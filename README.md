@@ -1,1 +1,1 @@
-# docs
+Contains all learning material.

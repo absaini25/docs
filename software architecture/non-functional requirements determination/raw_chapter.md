@@ -1,34 +1,5 @@
-Chapter 2. Defining Nonfunctional Requirements
-==============================================
-
-> *The Internet was done so well that most people think of it as a natural resource like the Pacific Ocean, rather than something that was man-made. When was the last time a technology with a scale like that was so error-free?*
->
-> [Alan Kay](http://www.drdobbs.com/architecture-and-design/interview-with-alan-kay/240003442), in interview with *Dr Dobb's Journal* (2012)
-
-A Note for Early Release Readers
+Defining Nonfunctional Requirements
 ================================
-
-With Early Release ebooks, you get books in their earliest form---the author's raw and unedited content as they write---so you can take advantage of these technologies long before the official release of these titles.
-
-This will be the 2nd chapter of the final book. The GitHub repo for this book is *[*https://github.com/ept/ddia2-feedback*](https://github.com/ept/ddia2-feedback)*.
-
-If you have comments about how we might improve the content and/or examples in this book, or if you notice missing material within this chapter, please reach out on GitHub.
-
-If you are building an application, you will be driven by a list of requirements. At the top of your list is most likely the functionality that the application must offer: what screens and what buttons you need, and what each operation is supposed to do in order to fulfill the purpose of your software. These are your *functional requirements*.
-
-In addition, you probably also have some *nonfunctional requirements*: for example, the app should be fast, reliable, secure, legally compliant, and easy to maintain. These requirements might not be explicitly written down, because they may seem somewhat obvious, but they are just as important as the app's functionality: an app that is unbearably slow or unreliable might as well not exist.
-
-Not all nonfunctional requirements fall within the scope of this book, but several do. In this chapter we will introduce several technical concepts that will help you articulate the nonfunctional requirements for your own systems:
-
--   How to define and measure the *performance* of a system (see ["Describing Performance"](https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/ch02.html#sec_introduction_percentiles));
-
--   What it means for a service to be *reliable*---namely, continuing to work correctly, even when things go wrong (see ["Reliability and Fault Tolerance"](https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/ch02.html#sec_introduction_reliability));
-
--   Allowing a system to be *scalable* by having efficient ways of adding computing capacity as the load on the system grows (see ["Scalability"](https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/ch02.html#sec_introduction_scalability)); and
-
--   Making it easier to maintain a system in the long term (see ["Maintainability"](https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/ch02.html#sec_introduction_maintainability)).
-
-The terminology introduced in this chapter will also be useful in the following chapters, when we go into the details of how data-intensive systems are implemented. However, abstract definitions can be quite dry; to make the ideas more concrete, we will start this chapter with a case study of how a social networking service might work, which will provide practical examples of performance and scalability.
 
 Case Study: Social Network Home Timelines
 =========================================

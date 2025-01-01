@@ -198,48 +198,48 @@ Here’s a high-level architecture for the system:
 graph TD
 
 subgraph Data Ingestion
-    UserActions[User Actions (Posts, Comments, Follows)]
-    PrimaryDB[Primary Database (Sharded MySQL/PostgreSQL)]
-    CDC[Change Data Capture (Kafka)]
-    UserActions --> PrimaryDB
-    PrimaryDB --> CDC
+UserActions[User Actions: Posts, Comments, Follows]
+PrimaryDB[Primary Database: Sharded MySQL or PostgreSQL]
+CDC[Change Data Capture via Kafka]
+UserActions --> PrimaryDB
+PrimaryDB --> CDC
 end
 
 subgraph Stream Processing
-    CDC --> StreamProcessor[Stream Processor (Flink/Spark Streaming)]
-    StreamProcessor --> DerivedTables[Derived Tables (Followers, Newsfeed)]
-    StreamProcessor --> FeedCache[Newsfeed Cache (Redis/Memcached)]
-    StreamProcessor --> ACLValidation[Privacy Enforcement Updates (ACLs)]
+CDC --> StreamProcessor[Stream Processor: Flink or Spark Streaming]
+StreamProcessor --> DerivedTables[Derived Tables: Followers, Newsfeed]
+StreamProcessor --> FeedCache[Newsfeed Cache: Redis or Memcached]
+StreamProcessor --> ACLValidation[Privacy Enforcement Updates via ACLs]
 end
 
 subgraph Post and Comment Storage
-    PostsDB[Posts Storage (Sharded MySQL/PostgreSQL)]
-    CommentsDB[Comments Storage (Nested Indexing with DFS)]
-    PostsDB --> FeedCache
-    CommentsDB --> FeedCache
-    PostsDB --> StreamProcessor
-    CommentsDB --> StreamProcessor
+PostsDB[Posts Storage: Sharded MySQL or PostgreSQL]
+CommentsDB[Comments Storage: Nested Indexing with DFS]
+PostsDB --> FeedCache
+CommentsDB --> FeedCache
+PostsDB --> StreamProcessor
+CommentsDB --> StreamProcessor
 end
 
 subgraph Privacy Enforcement
-    ACLDB[Access Control Lists (ACL) in NoSQL (DynamoDB/Cassandra)]
-    ACLDB --> FeedCache
-    ACLDB --> StreamProcessor
-    ACLDB --> UserRequest
+ACLDB[Access Control Lists stored in DynamoDB or Cassandra]
+ACLDB --> FeedCache
+ACLDB --> StreamProcessor
+ACLDB --> UserRequest
 end
 
 subgraph Popular User Optimization
-    PopularCache[Popular Posts Cache (In-Memory)]
-    PopularCache --> FeedCache
+PopularCache[Popular Posts Cache: In-Memory]
+PopularCache --> FeedCache
 end
 
 subgraph Feed Generation
-    FeedCache --> UserFeeds[Precomputed Newsfeed for Users]
-    UserFeeds --> UserRequest
-    PopularCache --> FeedCache
+FeedCache --> UserFeeds[Precomputed Newsfeed for Users]
+UserFeeds --> UserRequest
+PopularCache --> FeedCache
 end
 
-UserRequest[User Requests Feed/Posts]
+UserRequest[User Requests Feed or Posts]
 UserRequest --> FeedCache
 UserRequest --> ACLDB
 FeedCache --> PopularCache
